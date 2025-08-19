@@ -1,70 +1,70 @@
-Flask Docker App on AWS EC2
+# Two-Tier Flask Application Deployment on AWS
 
-Deploy a Flask web application on AWS EC2 using Docker and Terraform.
+🚀 **Project Overview**  
+This project demonstrates a **Two-Tier Flask Application** deployed on **AWS EC2** with automated setup using **Docker**, **Docker Compose**, **Terraform**, and **Shell Scripts**. The application is fully containerized, infrastructure is automated, and it is accessible via a public IP.
 
-Features
+---
 
-Terraform provisions EC2 automatically
+## 🌟 Key Highlights
+- **Automated Deployment:** EC2 instance provisioning, Docker installation, and app startup all automated.
+- **Multi-Container Architecture:** Separate containers for **Flask frontend** and **MySQL backend**.
+- **Infrastructure as Code:** Terraform used to manage AWS resources.
+- **Tech Stack:** Flask, MySQL, Docker, Docker Compose, Terraform, AWS EC2, Linux Shell.
 
-Shell script installs Docker and Docker Compose
+---
 
-Flask app runs in a Docker container
+## 🏗️ Project Architecture
+![Two-Tier Flask Architecture](two-tier-flask-app/ProjectDiagram.png)
+*Frontend and backend running on a single EC2 instance using Docker containers.*
 
-Terraform outputs full URL of the app (HTTP/HTTPS)
+---
 
-Prerequisites
+## 📸 Application Screenshot
+![Flask App Screenshot](two-tier-flask-app/application.png)
+![Flask App Screenshot](two-tier-flask-app/ec2.png)
+*Live Flask app running on AWS EC2.*
 
-AWS account with Access Key ID & Secret Access Key
+---
 
-Terraform >= 1.5.x installed
+## 💻 How It Works
+1. **Terraform** provisions an AWS EC2 instance and security group.  
+2. **Shell Script** installs Docker, Docker Compose, and make a network and volume for presist data and necessary dependencies.  
+3. **Docker Compose** launches the Flask app and database containers (mysql).  
+4. **Public IP** provided by Terraform is used to access the application.
 
-SSH key for EC2
+---
 
-Basic knowledge of Docker
+## 🎯 Outcome
+- Successfully deployed a fully automated, multi-container Flask application.  
+- Demonstrates ability to combine **cloud infrastructure, DevOps practices, and application development**.  
 
-Setup Instructions
-1. Configure AWS Credentials
-export AWS_ACCESS_KEY_ID=<your-access-key-id>
-export AWS_SECRET_ACCESS_KEY=<your-secret-access-key>
-export AWS_DEFAULT_REGION=<your-region>
+---
 
-2. Initialize Terraform
+## 📂 Tech Stack
+| Frontend | Backend | DevOps / Cloud |
+|----------|---------|----------------|
+| Flask    | MySQL   | Docker, Docker Compose, Terraform, AWS EC2, Shell Scripts |
+
+---
+## 💻 How to Run the Application
+
+Follow these steps to deploy the application:
+
+1. **Clone the Repository**
+```bash
+git clone <your-github-repo-link>
+cd <your-repo-folder>/terraform
+
+Note -> make sure add your aws access ID and secret ID in provider
+
+
 terraform init
-# If adding/updating providers:
-terraform init -upgrade
-
-3. Deploy Infrastructure
+terraform validate
 terraform plan
 terraform apply -auto-approve
 
+Note -> Make sure your ec2 status will be passed so wait untile your ec2 status passed then your application will visible
 
-EC2 instance will be created
+http://<EC2_PUBLIC_IP>:5000
 
-Docker and Flask app installed automatically
-
-4. Access the Application
-
-Terraform outputs the full URLs:
-
-flask_app_url = http://<public-ip>:5000
-flask_app_https_url = https://<public-dns>
-
-
-Note: The app may take a few seconds to start after EC2 is ready.
-
-Project Structure
-project-root/
-├── terraform/
-│   ├── main.tf
-│   ├── output.tf
-│   ├── variables.tf
-├── app/
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│   ├── app.py
-├── scripts/
-│   └── setup.sh
-└── README.md
-
-Cleanup
-terraform destroy -auto-approve
+Feel free to explore the repo for details or live demo.
