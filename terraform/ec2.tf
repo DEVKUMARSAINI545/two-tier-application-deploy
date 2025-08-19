@@ -12,7 +12,7 @@ resource "aws_default_vpc" "vpc" {
 }
 
 resource "aws_security_group" "mysg" {
-    name = "web-sg"
+    name = "dev-web-sg"
     description = "Allow http and ssh"
     vpc_id = aws_default_vpc.vpc.id
 
@@ -43,7 +43,7 @@ resource "aws_instance" "flask-app" {
     instance_type = "t2.micro"
     ami = "ami-0f918f7e67a3323f0"
     security_groups = [aws_security_group.mysg.name]
-  user_data = file("${path.module}/scripts/install.sh")
+  user_data = file("./scripts/install.sh")
     root_block_device {
       volume_size = 8
       volume_type = "gp3"
@@ -54,3 +54,5 @@ resource "aws_instance" "flask-app" {
 
     }
 }
+
+ 

@@ -1,4 +1,4 @@
-# Local Terraform directories and files
+ # Local Terraform directories and files
 .terraform/
 .terraform.lock.hcl
 *.tfstate
@@ -11,10 +11,12 @@ override.tf.json
 .terraformrc
 terraform.rc
 terraform.tfvars
+
 # Sensitive files
 *.pem
 *.key
 *.secret
+terraform/terra-key-gen
 
 # OS generated files
 .DS_Store
