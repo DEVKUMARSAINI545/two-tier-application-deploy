@@ -55,7 +55,7 @@ Follow these steps to deploy the application:
 git clone <your-github-repo-link>
 cd <your-repo-folder>/terraform
 
-Note -> make sure add your aws access ID and secret ID in provider so i provided you terraform.tfvars file where you paste your access Id and secret ID
+Note -> make sure add your aws access ID and secret ID in provider.tf  and  I provided you terraform.tfvars file where you paste your access Id and secret ID as .env
 
 
 terraform init
