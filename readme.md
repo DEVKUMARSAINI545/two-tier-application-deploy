@@ -10,6 +10,7 @@ The application is fully containerized, infrastructure is automated, and it is a
 - **Automated Deployment:** EC2 provisioning, Docker installation, and app startup all automated.  
 - **Multi-Container Architecture:** Separate containers for **Flask frontend** and **MySQL backend**.  
 - **Infrastructure as Code:** Terraform used to manage AWS resources.  
+- **Secure State Management:** Terraform state stored in **S3** and locked using **DynamoDB** to prevent concurrent modifications.  
 - **Continuous Integration & Deployment (CI/CD):** Jenkins pipeline automates cloning, infrastructure provisioning, and application deployment.  
 - **Tech Stack:** Flask, MySQL, Docker, Docker Compose, Terraform, AWS EC2, Jenkins, Linux Shell.
 
@@ -29,15 +30,16 @@ The application is fully containerized, infrastructure is automated, and it is a
 ---
 
 ## 💻 How It Works
-1. **Terraform** provisions an AWS EC2 instance and security group.  
+1. **Terraform** provisions an AWS EC2 instance, security group, and manages infrastructure using **S3 + DynamoDB for secure state management**.  
+   > ⚠️ **Note:** To enable secure state management, first manually create an **S3 bucket** and a **DynamoDB table** before running Terraform.  
 2. **Shell Script** installs Docker, Docker Compose, and creates network + volume for persistent data.  
 3. **Docker Compose** launches the Flask app and MySQL database containers.  
 4. **Jenkins CI/CD Pipeline**:
    - Automatically triggers on GitHub push (webhook).  
    - Clones repository.  
    - Runs Terraform to create infrastructure.  
-   - Deploys Docker containers.
-   - Add Shared Library in CI/CD
+   - Deploys Docker containers.  
+   - Uses **Shared Library** for reusable pipeline steps.  
 5. **Public IP** from Terraform is used to access the application.
 
 ---
@@ -45,14 +47,14 @@ The application is fully containerized, infrastructure is automated, and it is a
 ## 🎯 Outcome
 - Fully automated **Two-Tier Application Deployment** on AWS.  
 - Demonstrates ability to combine **Cloud, DevOps, and CI/CD practices**.  
-- Showcases end-to-end automation (Infra + App + Pipeline).  
+- Implements **secure Terraform state management** to prevent conflicts during concurrent runs.  
 
 ---
 
 ## 📂 Tech Stack
 | Frontend | Backend | DevOps / Cloud |
 |----------|---------|----------------|
-| Flask    | MySQL   | Docker, Docker Compose, Terraform, AWS EC2, Jenkins, Shell Scripts |
+| Flask    | MySQL   | Docker, Docker Compose, Terraform (S3 + DynamoDB), AWS EC2, Jenkins, Shell Scripts |
 
 ---
 
@@ -61,16 +63,23 @@ The pipeline is implemented using **Jenkins + Shared Library** for reusability.
 
 **Pipeline Stages:**
 1. **Clone Website Code** → Fetch app repo from GitHub.  
-2. **Terraform Apply** → Provision EC2 and networking.  
+2. **Terraform Apply** → Provision EC2, networking, and manage state securely.  
 3. **Deploy Containers** → Start Flask & MySQL with Docker Compose.  
 4. **Notification (optional)** → Send success/failure status.
 
- ## 📸 Jenkins Screenshot
+---
+
+## 📸 Jenkins Screenshot
 ![Jenkins pipeline stage view Screenshot](two-tier-flask-app/jenkinsimage.png)  
 
-## 🔄 Shared Library Git hub Link : https://github.com/DEVKUMARSAINI545/jenkins-shared-libraries.git
+---
 
-**Jenkinsfile Example:**
+## 🔄 Shared Library GitHub Link
+[https://github.com/DEVKUMARSAINI545/jenkins-shared-libraries.git](https://github.com/DEVKUMARSAINI545/jenkins-shared-libraries.git)
+
+---
+
+## 📝 Jenkinsfile Example
 ```groovy
 @Library("Shared") _
 pipeline {
