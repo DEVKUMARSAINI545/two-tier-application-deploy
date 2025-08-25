@@ -1,3 +1,8 @@
+resource "tls_private_key" "mykey" {
+  algorithm = "RSA"
+  rsa_bits  = 2048
+}
+
 resource "aws_key_pair" "mykey" {
     key_name = "terra-key-gen"
     public_key = tls_private_key.mykey.public_key_openssh
