@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+       
+        stage('Clone Website') {
+            steps {
+                git url: 'https://github.com/DEVKUMARSAINI545/two-tier-application-deploy.git', branch: "main"
+            }
+        }
+         stage('hello'){
+            steps {
+                echo 'Hello My Two tier application is now worked..... #bycoot aks'
+            }
+        }
+        
+          stage('Terraform Apply') {
+            steps {
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'awsCredId'
+                ]]) {
+                    dir('terraform') {
+                        sh 'terraform init'
+                        sh 'terraform apply -auto-approve'
+                    }
+                }
+            }
+        }
+    }
+}
