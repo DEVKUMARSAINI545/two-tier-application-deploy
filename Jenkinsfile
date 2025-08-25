@@ -19,10 +19,16 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                script {   
-                    terraform()
-                }
+                  withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'awsCredId'
+                ]]) {
+                    dir('terraform') {
+                        sh 'terraform init'
+                        sh 'terraform apply -auto-approve'
+               }
             }
         }
     }
+}
 }
