@@ -64,6 +64,9 @@ The pipeline is implemented using **Jenkins + Shared Library** for reusability.
 3. **Deploy Containers** → Start Flask & MySQL with Docker Compose.  
 4. **Notification (optional)** → Send success/failure status.
 
+ ## 📸 Jenkins Screenshot
+![Jenkins pipeline stage view Screenshot](two-tier-flask-app/jenkinsimage.png)  
+
 **Jenkinsfile Example:**
 ```groovy
 @Library("Shared") _
