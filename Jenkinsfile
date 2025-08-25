@@ -1,3 +1,4 @@
+@Library("Shared") _
 pipeline {
     agent any
 
@@ -5,7 +6,9 @@ pipeline {
        
         stage('Clone Website') {
             steps {
-                git url: 'https://github.com/DEVKUMARSAINI545/two-tier-application-deploy.git', branch: "main"
+                script{   
+                clone ('https://github.com/DEVKUMARSAINI545/two-tier-application-deploy.git', "main")
+                }
             }
         }
          stage('hello'){
