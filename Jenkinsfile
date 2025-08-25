@@ -3,25 +3,24 @@ pipeline {
     agent any
 
     stages {
-       
         stage('Clone Website') {
             steps {
-                script{   
-                clone ('https://github.com/DEVKUMARSAINI545/two-tier-application-deploy.git', "main")
+                script {   
+                    clone('https://github.com/DEVKUMARSAINI545/two-tier-application-deploy.git', "main")
                 }
             }
         }
-         stage('hello'){
+
+        stage('Hello') {
             steps {
-                echo 'Hello My Two tier application is now worked..... #bycoot aks'
+                echo 'Hello! My Two-tier application is now working... #bycoot aks'
             }
         }
-        
-          stage('Terraform Apply') {
+
+        stage('Terraform Apply') {
             steps {
-                script{   
-                terraform()
-            }
+                script {   
+                    terraform()
                 }
             }
         }
