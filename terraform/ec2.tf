@@ -1,6 +1,6 @@
 resource "aws_key_pair" "mykey" {
     key_name = "terra-key-gen"
-    public_key = file("terra-key-gen.pub")
+    public_key = file("~/.ssh/terra-key-gen.pub")
   
 }
 
