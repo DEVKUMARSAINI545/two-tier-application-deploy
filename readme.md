@@ -36,7 +36,8 @@ The application is fully containerized, infrastructure is automated, and it is a
    - Automatically triggers on GitHub push (webhook).  
    - Clones repository.  
    - Runs Terraform to create infrastructure.  
-   - Deploys Docker containers.  
+   - Deploys Docker containers.
+   - Add Shared Library in CI/CD
 5. **Public IP** from Terraform is used to access the application.
 
 ---
@@ -66,6 +67,8 @@ The pipeline is implemented using **Jenkins + Shared Library** for reusability.
 
  ## 📸 Jenkins Screenshot
 ![Jenkins pipeline stage view Screenshot](two-tier-flask-app/jenkinsimage.png)  
+
+## 🔄 Shared Library Git hub Link : https://github.com/DEVKUMARSAINI545/jenkins-shared-libraries.git
 
 **Jenkinsfile Example:**
 ```groovy
