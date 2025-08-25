@@ -1,8 +1,5 @@
 provider "aws" {
-    region = "ap-south-1"
-    access_key = var.aws_access_key
-    secret_key = var.aws_secret_key
-  
+  region = "ap-south-1"
+  # access_key aur secret_key hata do
+  # Terraform will read AWS_ACCESS_KEY_ID & AWS_SECRET_ACCESS_KEY from environment
 }
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
